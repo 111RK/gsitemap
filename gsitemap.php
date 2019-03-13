@@ -388,7 +388,7 @@ class Gsitemap extends Module
         foreach ($products_id as $product_id) {
             $product = new Product((int) $product_id['id_product'], false, (int) $lang['id_lang']);
 
-            $url = $link->getProductLink($product, $product->link_rewrite, htmlspecialchars(strip_tags($product->category)), $product->ean13, (int) $lang['id_lang'], (int) $this->context->shop->id, 0);
+            $url = $link->getProductLink($product, $product->link_rewrite[1], htmlspecialchars(strip_tags($product->category)), $product->ean13, (int) $lang['id_lang'], (int) $this->context->shop->id, 0);
 
             $id_image = Product::getCover((int) $product_id['id_product']);
             if (isset($id_image['id_image'])) {
@@ -405,8 +405,8 @@ class Gsitemap extends Module
             $image_product = array();
             if (isset($image_link) && ($file_headers[0] != 'HTTP/1.1 404 Not Found' || $file_headers === true)) {
                 $image_product = array(
-                    'title_img' => htmlspecialchars(strip_tags($product->name)),
-                    'caption' => htmlspecialchars(strip_tags($product->description_short)),
+                    'title_img' => htmlspecialchars(strip_tags($product->name[1])),
+                    'caption' => htmlspecialchars(strip_tags($product->description_short[1])),
                     'link' => $image_link,
                 );
             }
